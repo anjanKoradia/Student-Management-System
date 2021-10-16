@@ -57,7 +57,7 @@ public class CrudOperations {
         CrudMenu.taskList();
     }
     public static void display(){
-        System.out.println("Display");
+        StudentDao.displayRecords();
         Main.separaterLine();
         CrudMenu.taskList();
     }
