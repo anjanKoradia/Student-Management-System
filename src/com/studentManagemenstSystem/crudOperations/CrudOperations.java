@@ -52,7 +52,17 @@ public class CrudOperations {
         CrudMenu.taskList();
     }
     public static void delete(){
-        System.out.println("Delete");
+        System.out.print("\n\t\t\tEnter student grNumber to delete record : ");
+        int grNumber = sc.nextInt();
+
+        boolean flag = StudentDao.deleteStudentRecord(grNumber);
+
+        if (flag){
+            System.out.println("\n\tStudent record deleted successfully...\n");
+        }else{
+            System.out.println("\n\tSomething went wrong, try again...\n");
+        }
+
         Main.separaterLine();
         CrudMenu.taskList();
     }

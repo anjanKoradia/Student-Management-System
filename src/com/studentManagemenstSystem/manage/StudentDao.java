@@ -38,6 +38,31 @@ public class StudentDao {
         return flag;
     }
 
+    public static boolean deleteStudentRecord(int grNumber) {
+        boolean flag = false;
+        try{
+            // jdbc connection...
+            Connection connection = ConnectionProvider.createConnection();
+
+            // Query
+            String query = "delete from students where gr_number=?";
+
+            // Prepared Statement
+            PreparedStatement pstmt = connection.prepareStatement(query);
+
+            // set the value of parameters
+            pstmt.setInt(1, grNumber);
+
+            // execute...
+            pstmt.executeUpdate();
+            flag=true;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
     public static void displayRecords(){
         try{
             // jdbc connection...
