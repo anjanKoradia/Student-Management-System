@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Scanner;
 
 public class StudentDao {
     public static boolean addStudent(StudentDetails st){
@@ -32,6 +33,137 @@ public class StudentDao {
             pstmt.executeUpdate();
             flag=true;
 
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    public static boolean updateDetail(int enrollmentNumber, int choice){
+
+        Scanner sc = new Scanner(System.in);
+        boolean flag = false;
+
+        try {
+            // jdbc connection...
+            Connection connection = ConnectionProvider.createConnection();
+
+            // Query
+            String query;
+            PreparedStatement pstmt;
+            switch (choice) {
+                case 1:
+                    System.out.print("\n\t\t\t\tEnter Student Name : ");
+                    String name = sc.nextLine();
+
+                    query = "update students set name=? where enrollment_number=?";
+
+                    // Prepared Statement
+                    pstmt = connection.prepareStatement(query);
+
+                    // set the value of parameters
+                    pstmt.setString(1, name);
+                    pstmt.setInt(2, enrollmentNumber);
+
+                    // execute...
+                    pstmt.executeUpdate();
+
+                    flag=true;
+                    break;
+                case 2:
+                    System.out.print("\n\t\t\t\tEnter Student Branch : ");
+                    String branch = sc.nextLine();
+
+                    query = "update students set branch=? where enrollment_number=?";
+
+                    // Prepared Statement
+                    pstmt = connection.prepareStatement(query);
+
+                    // set the value of parameters
+                    pstmt.setString(1, branch);
+                    pstmt.setInt(2, enrollmentNumber);
+
+                    // execute...
+                    pstmt.executeUpdate();
+
+                    flag=true;
+                    break;
+                case 3:
+                    System.out.print("\n\t\t\t\tEnter Student Semester : ");
+                    int semester = sc.nextInt();
+
+                    query = "update students set semester=? where enrollment_number=?";
+
+                    // Prepared Statement
+                    pstmt = connection.prepareStatement(query);
+
+                    // set the value of parameters
+                    pstmt.setInt(1, semester);
+                    pstmt.setInt(2, enrollmentNumber);
+
+                    // execute...
+                    pstmt.executeUpdate();
+
+                    flag=true;
+                    break;
+                case 4:
+                    System.out.print("\n\t\t\t\tEnter Student E-mail : ");
+                    String email = sc.nextLine();
+
+                    query = "update students set email=? where enrollment_number=?";
+
+                    // Prepared Statement
+                    pstmt = connection.prepareStatement(query);
+
+                    // set the value of parameters
+                    pstmt.setString(1, email);
+                    pstmt.setInt(2, enrollmentNumber);
+
+                    // execute...
+                    pstmt.executeUpdate();
+
+                    flag=true;
+                    break;
+                case 5:
+                    System.out.print("\n\t\t\t\tEnter Student Phone Number : ");
+                    String phoneNumber = sc.nextLine();
+
+                    query = "update students set phone_number=? where enrollment_number=?";
+
+                    // Prepared Statement
+                    pstmt = connection.prepareStatement(query);
+
+                    // set the value of parameters
+                    pstmt.setString(1, phoneNumber);
+                    pstmt.setInt(2, enrollmentNumber);
+
+                    // execute...
+                    pstmt.executeUpdate();
+
+                    flag=true;
+                    break;
+                case 6:
+                    System.out.print("\n\t\t\t\tEnter Student Address : ");
+                    String address = sc.nextLine();
+
+                    query = "update students set address=? where enrollment_number=?";
+
+                    // Prepared Statement
+                    pstmt = connection.prepareStatement(query);
+
+                    // set the value of parameters
+                    pstmt.setString(1, address);
+                    pstmt.setInt(2, enrollmentNumber);
+
+                    // execute...
+                    pstmt.executeUpdate();
+
+                    flag=true;
+                    break;
+                default:
+                    System.out.println("\n\t\tInvalid Choice, please try again...\n");
+                    break;
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
